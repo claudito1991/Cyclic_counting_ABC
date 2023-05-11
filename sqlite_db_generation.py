@@ -1,3 +1,4 @@
+# pylint: disable=no-else-return
 import sqlite3
 
 
@@ -28,12 +29,12 @@ def reset_database_quantity_for_article(db_name, table_name):
     cnt = sqlite3.connect(db_name)
     query = cnt.execute(
         f"""UPDATE {table_name}
-                        SET CANTIDAD = 3
+                        SET CANTIDAD = 1
                         WHERE CLASIFICACION = 'C' """
     )
     query = cnt.execute(
         f"""UPDATE {table_name}
-                        SET CANTIDAD = 3
+                        SET CANTIDAD = 2
                         WHERE CLASIFICACION = 'B' """
     )
     query = cnt.execute(
@@ -90,6 +91,7 @@ def check_if_article_has_quantity(db_name, table_name, article):
     else:
         return True
     cnt.close()
+
 
 def check_if_category_has_quantity(db_name, table_name, category):
     cnt = sqlite3.connect(db_name)

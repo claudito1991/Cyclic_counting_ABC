@@ -1,3 +1,4 @@
 data_env/
 *.xlsx
 *.db
+__pycache__/
