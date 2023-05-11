@@ -68,7 +68,7 @@ def select_random_article(db_name, table_name, category):
     cnt = sqlite3.connect(db_name)
     query = cnt.execute(
         f""" SELECT ARTICULO, DESCRIPCION, CLASIFICACION FROM {table_name}
-    WHERE CLASIFICACION='{category}'
+    WHERE CLASIFICACION='{category}' AND CANTIDAD > 0
     ORDER BY random() 
     LIMIT 1"""
     )
@@ -105,3 +105,15 @@ def check_if_category_has_quantity(db_name, table_name, category):
         return True
     else:
         return False
+
+def check_if_item_without_count(db_name, table_name):
+    cnt = sqlite3.connect(db_name)
+    query = cnt.execute(
+        f""" SELECT SUM(CANTIDAD) FROM {table_name} """
+    )
+    rows = query.fetchone()
+    if rows[0] == 0:
+        return False
+    else:
+        return True
+    cnt.close()
