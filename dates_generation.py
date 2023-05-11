@@ -37,12 +37,12 @@ def create_list_of_dates(real_business_days_list):
     real_business = []
     for i in real_business_days_list:
         real_business.append(convert_date_object_to_string(i))
-        print(i)
+        #print(i)
     return real_business
 
 def create_dataframe_dictionary(lista):
     dataframe_dict = dict()
     for i in lista:
-      date = i.replace("/","-")
-      dataframe_dict[date] = pd.DataFrame(columns=["articulo","descripcion","chess","wms","fisico"])
+        date = i.replace("/","-")
+        dataframe_dict[date] = pd.DataFrame(columns=["articulo","descripcion","clasificacion","chess","wms","fisico"])
     return dataframe_dict
