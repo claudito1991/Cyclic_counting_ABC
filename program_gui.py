@@ -1,11 +1,17 @@
 import PySimpleGUI as sg
 
 layout = [
-    [sg.Text('Ingresar texto:')],
+    [[sg.Text('Ingresar feriado:')],
     [sg.InputText(key='-INPUT-')],
-    [sg.Button('+', key='-ADD-'), sg.Button('Submit', key='-SUBMIT-')],
-    [sg.Text('', key='-OUTPUT-')]
+    [sg.Button('Agregar feriado', key='-ADD-'), sg.Button('Aceptar', key='-SUBMIT-')],
+    [sg.Text('', key='-OUTPUT-')]],
+
+    [[sg.Text('Ingresar archivo ABC:')],
+    [sg.FileBrowse(key='-ABC-FILE-')],
+    [sg.Button('Procesar', key='-PROCESS-'), sg.Button('Cancelar', key='-CANCEL-')],
+    [sg.Text('', key='-OUTPUT-PROCESS-')]]
 ]
+
 
 window = sg.Window('Ventana con TextBox y Botón', layout)
 
@@ -22,9 +28,7 @@ while True:
     elif event == '-SUBMIT-':
         text = ', '.join(text_list)
         sg.popup('Textos agregados:', text)
-
+    
     window['-INPUT-'].update('')
-
-window.close()
 
 window.close()
