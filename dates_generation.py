@@ -46,3 +46,12 @@ def create_dataframe_dictionary(lista):
         date = i.replace("/","-")
         dataframe_dict[date] = pd.DataFrame(columns=["articulo","descripcion","clasificacion","chess","wms","fisico"])
     return dataframe_dict
+
+def date_generation_process(month, year, holidays_list):
+    holidays_list = convert_string_to_date(holidays_list)
+    days_list = weekdays_list(month, year)
+    business_days_list = generate_date_from_list(month, year, days_list)
+    real_business = extract_holidays_from_weekdays(business_days_list, holidays_list)
+    list_of_dates = create_list_of_dates(real_business)
+    dictionary = create_dataframe_dictionary(list_of_dates)
+    return dictionary

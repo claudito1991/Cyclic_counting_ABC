@@ -1,5 +1,6 @@
 # pylint: disable=no-else-return
 import sqlite3
+import math
 
 
 def create_db(db_name, table_name):
@@ -117,3 +118,21 @@ def check_if_item_without_count(db_name, table_name):
     else:
         return True
     cnt.close()
+
+def get_max_per_category_per_day(db_name, table_name, dates_dictionary, category):
+    cnt = sqlite3.connect(db_name)
+    business_days = len(dates_dictionary.keys())
+    query = cnt.execute(
+        f""" SELECT COUNT(*)
+            FROM {table_name}
+            WHERE CLASIFICACION = '{category}'; """
+    )
+
+    if(category == "A"):
+        quantity = query.fetchone()[0] * 3
+    elif(category == "B"):
+        quantity = query.fetchone()[0] * 2
+    else:
+        quantity = query.fetchone()[0] * 1
+
+    return math.floor(quantity/business_days)
