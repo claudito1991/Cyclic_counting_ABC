@@ -1,4 +1,7 @@
 data_env/
 *.xlsx
 *.db
+
+
 __pycache__/
+*.py[cod]
