@@ -1,4 +1,5 @@
 import pandas as pd
+import random
 
 
 #adding count quantity for each code based on ABC
